@@ -136,6 +136,15 @@
       },
 
       /**
+       * Allow selecting the same value multiple times
+       * @type {Boolean}
+       */
+      selectMultipleTimes: {
+        type: Boolean,
+        default: false
+      },
+
+      /**
        * Disable the entire component.
        * @type {Boolean}
        */
@@ -770,6 +779,8 @@
        * @return {Boolean}        True when selected | False otherwise
        */
       isOptionSelected(option) {
+        if(this.selectMultipleTimes) return false;
+
         return this.selectedValue.some(value => this.optionComparator(value, option))
       },
 
