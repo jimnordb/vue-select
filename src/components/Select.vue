@@ -282,6 +282,15 @@ export default {
     },
 
     /**
+     * Allow selecting the same value multiple times
+     * @type {Boolean}
+     */
+    allowDuplicate: {
+      type: Boolean,
+      default: false
+    },
+
+    /**
      * When working with objects, the reduce
      * prop allows you to transform a given
      * object to only the information you
@@ -1081,6 +1090,8 @@ export default {
      * @return {Boolean}        True when selected | False otherwise
      */
     isOptionSelected(option) {
+      if(this.allowDuplicate) return false;
+
       return this.selectedValue.some((value) =>
         this.optionComparator(value, option)
       )
